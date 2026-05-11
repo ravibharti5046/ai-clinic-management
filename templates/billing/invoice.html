@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+
+        .clinic-info {
+            text-align: right;
+        }
+
+        .title {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 25px;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #444;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .summary {
+            margin-top: 30px;
+            width: 40%;
+            margin-left: auto;
+        }
+
+        .print-btn {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        @media print {
+            .print-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div>
+        {% if clinic.logo %}
+            <img src="{{ clinic.logo.url }}" class="logo">
+        {% endif %}
+    </div>
+
+    <div class="clinic-info">
+        <h2>{{ clinic.clinic_name }}</h2>
+        <p>{{ clinic.address }}</p>
+        <p>Phone: {{ clinic.phone }}</p>
+        <p>Email: {{ clinic.email }}</p>
+        <p>GST: {{ clinic.gst_number }}</p>
+    </div>
+</div>
+
+<div class="title">INVOICE</div>
+
+<table>
+    <tr>
+        <th>Invoice Number</th>
+        <td>{{ bill.invoice_number }}</td>
+    </tr>
+    <tr>
+        <th>Patient</th>
+        <td>{{ bill.patient }}</td>
+    </tr>
+    <tr>
+        <th>Appointment</th>
+        <td>{{ bill.appointment }}</td>
+    </tr>
+    <tr>
+        <th>Date</th>
+        <td>{{ bill.created_at }}</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Description</th>
+        <th>Amount</th>
+    </tr>
+    <tr>
+        <td>Consultation Charges</td>
+        <td>₹{{ bill.consultation_amount }}</td>
+    </tr>
+    <tr>
+        <td>Lab Charges</td>
+        <td>₹{{ bill.lab_amount }}</td>
+    </tr>
+    <tr>
+        <td>Pharmacy Charges</td>
+        <td>₹{{ bill.pharmacy_amount }}</td>
+    </tr>
+</table>
+
+<table class="summary">
+    <tr>
+        <th>Subtotal</th>
+        <td>₹{{ bill.subtotal }}</td>
+    </tr>
+    <tr>
+        <th>GST</th>
+        <td>₹{{ bill.gst_amount }}</td>
+    </tr>
+    <tr>
+        <th>Total</th>
+        <td>₹{{ bill.total_amount }}</td>
+    </tr>
+    <tr>
+        <th>Paid</th>
+        <td>₹{{ bill.paid_amount }}</td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td>{{ bill.payment_status }}</td>
+    </tr>
+</table>
+
+<p>{{ clinic.invoice_terms }}</p>
+
+<div class="print-btn">
+    <button onclick="window.print()">Print Invoice</button>
+</div>
+
+</body>
+</html>
