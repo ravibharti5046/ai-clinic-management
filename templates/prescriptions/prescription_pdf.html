@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial;
+      font-size: 14px;
+    }
+
+    .header {
+      text-align: center;
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 15px;
+      border-collapse: collapse;
+    }
+
+    td, th {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+
+    .section-title {
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="title">AI Clinic</div>
+    <div>Hospital Management</div>
+    <div>Address: Your Clinic Address Here</div>
+    <div>Phone: 9999999999</div>
+  </div>
+
+  <h2>Prescription</h2>
+
+  <table>
+    <tr>
+      <th>Patient</th>
+      <td>{{ prescription.patient.first_name }} {{ prescription.patient.last_name }}</td>
+    </tr>
+
+    <tr>
+      <th>Doctor</th>
+      <td>{{ prescription.doctor }}</td>
+    </tr>
+
+    <tr>
+      <th>Date</th>
+      <td>{{ prescription.created_at }}</td>
+    </tr>
+
+    <tr>
+      <th>Follow Up Date</th>
+      <td>{{ prescription.follow_up_date }}</td>
+    </tr>
+  </table>
+
+  <div class="section-title">Symptoms</div>
+  <p>{{ prescription.symptoms }}</p>
+
+  <div class="section-title">Diagnosis</div>
+  <p>{{ prescription.diagnosis }}</p>
+
+  <div class="section-title">Medicines</div>
+  <p>{{ prescription.medicines }}</p>
+
+  <div class="section-title">Advice</div>
+  <p>{{ prescription.advice }}</p>
+
+  <br><br>
+
+  <p style="text-align:right;">
+    Doctor Signature: __________________
+  </p>
+</body>
+</html>

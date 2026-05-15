@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'rest_framework',
     
+    'rest_framework',
+    'corsheaders',
 
     'clinic',
     'patients',
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'appointments',
     'billing',
     'pharmacy',
+    'prescriptions',
     'labs',
     'ai_services',
     'reports',
@@ -154,3 +155,7 @@ import os
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
